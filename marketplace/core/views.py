@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from item.models import Category, Item
 from .forms import SignupForm
 
+
+
 def index(request):
     items = Item.objects.filter(is_sold=False)[0:6]
     categories = Category.objects.all()
@@ -11,8 +13,10 @@ def index(request):
         'items': items,
     })
 
+
 def contact(request):
     return render(request, 'core/contact.html')
+
 
 def signup(request):
     if request.method == 'POST':
@@ -28,4 +32,9 @@ def signup(request):
     return render(request, 'core/signup.html', {
         'form': form
     })
+
     
+def logout(request):
+    return redirect('/login/')
+
+
